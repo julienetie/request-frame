@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <!-- HTML 4.01 since we go all the way back to IE 5.5 -->
+    <meta charset="UTF-8">
+    <title>AMD request-frame Assignation Check</title>
+    <style>
+    html,
+    body {
+        background-color: #5BFCC1;
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        font-style: sans-serif;
+        font-size: 0.9em;
+        color: #E1FAF1;
+        letter-spacing: 0.2em;
+        padding: 0.1em;
+        border: 1px dotted #8AFFFD;
+        box-sizing: border-box;
+        background: #25614B;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Show the request function -->
+    <div></div>
+    <!-- Show the cancel function -->
+    <div></div>
+    <!-- Show the high resolution timestamp -->
+    <div></div>
+    <!-- Display iOS version if any -->
+    <div style='color: #BDF72A'></div>
+        <script  data-main="amd/assign" src="../../node_modules/requirejs/require.js"></script>
+    <script>
+    /**
+     * Display the iOS version if any.
+     * @screen {@link https://gist.github.com/Craga89/2829457} - ios-version.js 
+     */
+    var iOS = parseFloat(
+        ('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(
+            navigator.userAgent) || [0, ''])[1])
+        .replace('undefined', '3_2').replace('_', '.').replace('_', '')
+    ) || 'The user-agent didn\'t detect an iOS device';
+
+    // Display iOS version if any
+    document.getElementsByTagName('div')[3].innerHTML = iOS;
+    </script>
+</body>
+
+</html>

@@ -38,7 +38,9 @@
   "homepage": "https://github.com/julienetie/request-frame",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "requirejs": "^2.1.19"
   }
 }
