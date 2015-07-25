@@ -1,26 +1,17 @@
 /**
- * @Copyright Julien Etienne 2015 All Rights Reserved.
- * @license MIT
- * requestFrame is a polyfill that provides and the most appropriate timing 
- * function according to the browser implementation.
- */
-
-/**
- * Provides the requested timing function or re/assigns requestAnimationFrame & 
- * cancelAnimationFrame with the native function or polyfill.
- * @param  {String} type request | cancel | native
- * @return {Function} - Timing function.
+ * @param  {String} type - request | cancel | native.
+ * @return {Function} Timing function.
  */
 function requestFrame(type) {
 
-    // The only vendor prefixes required
+    // The only vendor prefixes required.
     var vendors = ['moz', 'webkit'],
 
         // Disassembled timing function abbreviations.
         aF = 'AnimationFrame',
         rqAF = 'Request' + aF,
 
-        // Final assigned functions
+        // Final assigned functions.
         assignedRequestAnimationFrame,
         assignedCancelAnimationFrame,
 
@@ -36,8 +27,8 @@ function requestFrame(type) {
 
     /**
      * hasIOS6RequestAnimationFrameBug.
-     * @See {@Link https://gist.github.com/julienetie/86ac394ec41f1271ff0a} 
-     * - Commentary.
+     * @See {@Link https://gist.github.com/julienetie/86ac394ec41f1271ff0a}
+     * - for Commentary.
      * @Copyright 2015 - Julien Etienne. 
      * @License: MIT.
      */
@@ -76,16 +67,14 @@ function requestFrame(type) {
     }
 
     /**
-     * Provides the native setTimeout function for legacy support,
-     * and returns the timestamp.
-     * This is a polyfill by Erik, introduced by Paul Irish & 
-     * Improved by Darius Bacon.
+     * Based on a polyfill by Erik, introduced by Paul Irish & 
+     * further improved by Darius Bacon.
      * @see  {@link http://www.paulirish.com/2011/
      * requestanimationframe-for-smart-animating}
      * @see  {@link https://github.com/darius/requestAnimationFrame/blob/
      * master/requestAnimationFrame.js}
-     * @callback {Number} - Timestamp.
-     * @return {Function} - setTimeout Function.
+     * @callback {Number} Timestamp.
+     * @return {Function} setTimeout Function.
      */
     function setTimeoutWithTimestamp(callback) {
         var immediateTime = Date.now(),
@@ -97,7 +86,7 @@ function requestFrame(type) {
     }
 
     /**
-     * Will assign the native function, prefixed function 
+     * Queries the native function, prefixed function 
      * or use the setTimeoutWithTimestamp function.
      * @return {Function}
      */
@@ -119,7 +108,7 @@ function requestFrame(type) {
     }
 
     /**
-     * Will assign the native function, prefixed function 
+     * Queries the native function, prefixed function 
      * or use the clearTimeoutWithId function.
      * @return {Function}
      */
@@ -140,8 +129,8 @@ function requestFrame(type) {
         /**
          * Checks for the prefixed cancelAnimationFrame implementation.
          * @param  {Array} prefixedNames - An array of the prefixed names. 
-         * @param  {Number} i          - Iteration start point.
-         * @return {Function}          - prefixed cancelAnimationFrame function.
+         * @param  {Number} i - Iteration start point.
+         * @return {Function} prefixed cancelAnimationFrame function.
          */
         function prefixedCancelAnimationFrame(prefixedNames, i) {
             var cancellationFunction;
@@ -167,11 +156,9 @@ function requestFrame(type) {
         }
     }
 
-    // User's choice
-
     /**
      * The type value "request" singles out firefox 4 - 10 and 
-     * assigns the setTimeout function.
+     * assigns the setTimeout function if plausible.
      */
     if (type === 'request' || '') {
         if (window.mozRequestAnimationFrame &&
@@ -188,7 +175,7 @@ function requestFrame(type) {
         return queryCancelAnimationFrame();
         /**
          * The type value "native" reassigns the expected native properties.
-         * Using the previous firefox 4 - 10 patch.
+         * Using the firefox 4 - 10 patch.
          */
     } else if (type === 'native') {
         if (window.mozRequestAnimationFrame &&
