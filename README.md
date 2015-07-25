@@ -8,18 +8,8 @@
 - **iOS 6 bug fix** without user-agent sniffing.
 - **Firefox 4 - 10 function mismatch normalization**.
 - Doesn't modify native functions unless specified.
-- dev, AMD, jQuery & minified 
+- AMD compliant.
 
-## [Download](http://ddddd.com)
-
-### via npm
-```
-npm i request-frame --save
-```
-### via bower
-```
-bower i request-frame
-```
 ### src
 ```
 <script src="request-frame.min.js"></script>
@@ -31,9 +21,9 @@ bower i request-frame
 var request = requestFrame('request'); // window.requestAnimationFrame | setTimeout
 var cancel = requestFrame('cancel'); // window.cancelAnimationFrame | cancelTimeout
 ```
-#### Or polyfill the native functions:
+#### Or re/ assign native functions:
 ```
-request('native'); // re/declares requestAnimationFrame & cancelAnimationFrame
+request('native'); // re/ declares requestAnimationFrame & cancelAnimationFrame
 ```
 Below is just an example of the requestAnimationFrame API, see links: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/hh453388.aspx) & [W3](http://www.w3.org/TR/2011/WD-html5-20110525/timers.html). 
 
@@ -56,20 +46,20 @@ cancel(requestId);  // Cancels frame request
 ## The ideology
 request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances.
 
-### Test "results".
+### Results of browsers tested:
 
 ![img](http://i61.tinypic.com/i1xuzd.jpg)
 ![img](http://i57.tinypic.com/j7fg2x.jpg)
 
 ### Issues
-Please, report [them](http://github.com/julienetie/request-frame/issues). 
+Please report all bugs [here](http://github.com/julienetie/request-frame/issues). 
 
 ### Contribute
 Just do it!
 
 ### Credits & Thanks
 
-Created by [Julien Etienne](https://gist.github.com/julienetie), callback timestamp method by [ Erik Möller](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) (fortunately exposed & enhanced by Paul Irish) & [Darius Bacon](https://github.com/darius/requestAnimationFrame) for the timing re-arrangements. Not to mention the great input by everyone on this [thread](https://gist.github.com/paulirish/1579671) who really just built off each other's ideas.
+Created by [Julien Etienne](https://gist.github.com/julienetie), polyfill influenced by [ Erik Möller, Paul Irish](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) & [Darius Bacon](https://github.com/darius/requestAnimationFrame). Credit to all on this [thread](https://gist.github.com/paulirish/1579671) for sharing great ideas and workarounds.
 
 --- 
 
