@@ -10,11 +10,21 @@
 - Doesn't modify native functions unless specified.
 - AMD compliant.
 
-### src
+### Get request-frame:
+
+#### via npm
+```
+npm i request-frame --save
+```
+#### via bower
+```
+bower i request-frame
+```
+#### [src](https://github.com/julienetie/request-frame/tree/master/dist)
 ```
 <script src="request-frame.min.js"></script>
 ```
-## The API:
+### The API:
 #### Assign the timing functions:
 *requestFrame( request | cancel | native )*  request is default. 
 ```
@@ -43,7 +53,7 @@ var requestId = request(something); // Assigns Id & calls "something"
 cancel(requestId);  // Cancels frame request 
 ```
 
-## The ideology
+### The ideology
 request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances.
 
 ### Results of browsers tested:
