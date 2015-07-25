@@ -1,42 +1,75 @@
-#resizilla v0.3
---- 
-Window resize with debounce & requestAnimationFrame.  
- 
-    resizilla(handler, delay, inception).call(window); 
- 
-- handler: Function to execute on resize, 
-- delay: Delay of the function call in ms on resize, 
-- inception: If true the function call at the beginning of the detection period, if false the call will be at the end of the detection period (false by default), 
+![img](http://i62.tinypic.com/2ui8xmp.jpg)
 
-Recommendation: Use a moderate delay for consistency with legacy browsers. 
+### requestAnimationFrame & cancelAnimationFrame for optimal cross-browser development.
 
-####Current Browser support: 
+## request-frame v0.8
+- Provides a clean polyfill for requestAnimationFrame & cancelAnimationFrame.
+- Tested & working on: IE 5.5+, FF 3+, Opera 11.16+, Safari 4+, Chrome 14+, iOS 3+, Android 2.3+, Android Chrome 28+.  
+- **iOS 6 bug fix** without user-agent sniffing.
+- **Firefox 4 - 10 function mismatch normalization**.
+- Doesn't modify native functions unless specified.
+- dev, AMD, jQuery & minified 
 
-- Chrome 30+ 
-- Safari 6.1+ 
-- Firefox 30+ 
-- Opera 24+ 
-- IE10+ 
-- Edge 
- 
-####Current bugs:
+## [Download](http://ddddd.com)
 
-- Safari 6 
-- Safari 5 
-- Opera 12.1 
-- FF10 r
-- IE9 
-- IE8 
- 
-####Mobile devices: 
- 
-window resizilla support is rarely necessary for for mobile devices, but can be
-helpful with iframes. Mobile support (devices widths below 1024px) 
-is inactive by default. To enable use: 
- 
-    resizilla.enableMobileResize();
- 
-The behavior of mobile orientation & resizing varies amongst devices. 
+### via npm
+```
+npm i request-frame --save
+```
+### via bower
+```
+bower i request-frame
+```
+### src
+```
+<script src="request-frame.min.js"></script>
+```
+## The API:
+#### Assign the timing functions:
+*requestFrame( request | cancel | native )*  request is default. 
+```
+var request = requestFrame('request'); // window.requestAnimationFrame | setTimeout
+var cancel = requestFrame('cancel'); // window.cancelAnimationFrame | cancelTimeout
+```
+#### Or polyfill the native functions:
+```
+request('native'); // re/declares requestAnimationFrame & cancelAnimationFrame
+```
+Below is just an example of the requestAnimationFrame API, see links: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/hh453388.aspx) & [W3](http://www.w3.org/TR/2011/WD-html5-20110525/timers.html). 
+
+#### Loop something:
+```
+function something( useTimeStamp ){
+    
+    // Do something here
+    
+    request(something); 
+}
+
+var requestId = request(something); // Assigns Id & calls "something"
+```
+#### Cancel something:
+```
+cancel(requestId);  // Cancels frame request 
+```
+
+## The ideology
+request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances.
+
+### Test "results".
+
+![img](http://i61.tinypic.com/i1xuzd.jpg)
+![img](http://i57.tinypic.com/j7fg2x.jpg)
+
+### Issues
+Please, report [them](http://github.com/julienetie/request-frame/issues). 
+
+### Contribute
+Just do it!
+
+### Credits & Thanks
+
+Created by [Julien Etienne](https://gist.github.com/julienetie), callback timestamp method by [ Erik Möller](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) (fortunately exposed & enhanced by Paul Irish) & [Darius Bacon](https://github.com/darius/requestAnimationFrame) for the timing re-arrangements. Not to mention the great input by everyone on this [thread](https://gist.github.com/paulirish/1579671) who really just built off each other's ideas.
 
 --- 
 
