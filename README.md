@@ -2,7 +2,7 @@
 
 ### requestAnimationFrame & cancelAnimationFrame for optimal cross-browser development.
 
-## request-frame v0.8
+## request-frame v1.0.1
 - Provides a clean polyfill for requestAnimationFrame & cancelAnimationFrame.
 - Tested & working on: IE 5.5+, FF 3+, Opera 11.16+, Safari 4+, Chrome 14+, iOS 3+, Android 2.3+, Android Chrome 28+.  
 - **iOS 6 bug fix** without user-agent sniffing.
@@ -56,7 +56,7 @@ cancel(requestId);  // Cancels frame request
 ### The ideology
 request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances.
 
-### Results of browsers tested:
+### Browsers tested & passing:
 
 ![img](http://i61.tinypic.com/i1xuzd.jpg)
 ![img](http://i57.tinypic.com/j7fg2x.jpg)
@@ -69,7 +69,7 @@ Just do it!
 
 ### Credits & Thanks
 
-Created by [Julien Etienne](https://gist.github.com/julienetie), polyfill influenced by [ Erik Möller, Paul Irish](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) & [Darius Bacon](https://github.com/darius/requestAnimationFrame). Credit to all on this [thread](https://gist.github.com/paulirish/1579671) for sharing great ideas and workarounds.
+Created by [Julien Etienne](https://gist.github.com/julienetie), timestamp polyfill by [ Erik Möller, Paul Irish](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) & [Darius Bacon](https://github.com/darius/requestAnimationFrame). Credit to all on this [thread](https://gist.github.com/paulirish/1579671) for sharing great ideas and workarounds.
 
 --- 
 

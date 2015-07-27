@@ -1,8 +1,7 @@
 /**
-/*
  *  request-frame - requestAnimationFrame & cancelAnimationFrame polyfill for
  *   optimal cross-browser development.
- *    Version:  v0.8.1
+ *    Version:  v1.0.1
  *     License:  MIT
  *      Copyright Julien Etienne 2015 All Rights Reserved.
  *        github:  https://github.com/julienetie/request-frame
@@ -15,7 +14,6 @@
  * @return {Function} Timing function.
  */
 function requestFrame(type) {
-
     // The only vendor prefixes required.
     var vendors = ['moz', 'webkit'],
 
@@ -28,7 +26,15 @@ function requestFrame(type) {
         assignedCancelAnimationFrame,
 
         // Initial time of the timing lapse.
-        previousTime = 0;
+        previousTime = 0,
+
+        mozRAF = window.mozRequestAnimationFrame,
+        mozCAF = window.mozCancelAnimationFrame,
+
+        // Checks for firefox 4 - 10 function pair mismatch.
+        hasMozMismatch = mozRAF && !mozCAF,
+
+        func;
 
     // Date.now polyfill, mainly for legacy IE versions.
     if (!Date.now) {
@@ -45,29 +51,42 @@ function requestFrame(type) {
      * @License: MIT.
      */
     function hasIOS6RequestAnimationFrameBug() {
-        var hasMobileDeviceWidth = screen.width <= 768 ? true : false,
-            requiresWebkitRequestAnimationFrame = !(
-                window.webkitRequestAnimationFrame &&
-                window.requestAnimationFrame),
-            hasNoNavigationTiming = window.performance ? false : true;
-        if (requiresWebkitRequestAnimationFrame &&
-            hasMobileDeviceWidth &&
-            hasNoNavigationTiming) {
-            if (window.webkitRequestAnimationFrame ||
-                window.requestAnimationFrame) {
-                console.warn('This device may contain the iOS v6x ' +
-                    'webkitRequestAnimationFrame timing bug. For timing, ' +
-                    'please use an alternative such as the "setTimeout()" or' +
-                    '"setInterval()" API');
+        var webkitRAF = window.webkitRequestAnimationFrame,
+            rAF = window.requestAnimationFrame,
+
+            // CSS/ Device with max for iOS6 Devices.
+            hasMobileDeviceWidth = screen.width <= 768 ? true : false,
+
+            // Only supports webkit prefixed requestAnimtionFrane.
+            requiresWebkitprefix = !(webkitRAF && rAF),
+
+            // iOS6 webkit browsers don't support performance now.
+            hasNoNavigationTiming = window.performance ? false : true,
+
+            iOS6Notice = 'setTimeout is being used as a substitiue for' +
+            'requestAnimationFrame due to a bug within iOS 6 builds',
+
+            hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth &&
+            hasNoNavigationTiming;
+
+        function bugCheckresults(timingFnA, timingFnB, notice) {
+            if (timingFnA || timingFnB) {
+                console.warn(notice);
                 return true;
             } else {
-                console.info('hasIOS6RequestAnimationFrameBug is not ' +
-                    'applicable for this device');
                 return false;
             }
-        } else {
-            return false;
         }
+
+        function displayResults() {
+            if (hasIOS6Bug) {
+                return bugCheckresults(webkitRAF, rAF, iOS6Notice);
+            } else {
+                return false;
+            }
+        }
+
+        return displayResults();
     }
 
     /**
@@ -168,39 +187,50 @@ function requestFrame(type) {
         }
     }
 
-    /**
-     * The type value "request" singles out firefox 4 - 10 and 
-     * assigns the setTimeout function if plausible.
-     */
-    if (type === 'request' || '') {
-        if (window.mozRequestAnimationFrame &&
-            !window.mozCancelAnimationFrame) {
+    function getRequestFn() {
+        if (hasMozMismatch) {
             return setTimeoutWithTimestamp;
         } else {
             return queryRequestAnimationFrame();
         }
-        /**
-         * Firefox 4 - 10 defaults to clear animation, which is used for 
-         * re-assignment.
-         */
-    } else if (type === 'cancel') {
+    }
+
+    function getCancelFn() {
         return queryCancelAnimationFrame();
-        /**
-         * The type value "native" reassigns the expected native properties.
-         * Using the firefox 4 - 10 patch.
-         */
-    } else if (type === 'native') {
-        if (window.mozRequestAnimationFrame &&
-            !window.mozCancelAnimationFrame) {
+    }
+
+    function setNativeFn() {
+        if (hasMozMismatch) {
             window.requestAnimationFrame = setTimeoutWithTimestamp;
             window.cancelAnimationFrame = clearTimeoutWithId;
         } else {
             window.requestAnimationFrame = queryRequestAnimationFrame();
             window.cancelAnimationFrame = queryCancelAnimationFrame();
         }
-    } else {
-        throw new Error('RequestFrame parameter is not a type.');
     }
+
+    /**
+     * The type value "request" singles out firefox 4 - 10 and 
+     * assigns the setTimeout function if plausible.
+     */
+
+    switch (type) {
+        case 'request':
+        case '':
+            func = getRequestFn();
+            break;
+
+        case 'cancel':
+            func = getCancelFn();
+            break;
+
+        case 'native':
+            setNativeFn();
+            break;
+        default:
+            throw new Error('RequestFrame parameter is not a type.');
+    }
+    return func;
 }
 
 

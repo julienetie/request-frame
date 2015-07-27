@@ -45,7 +45,7 @@
         ('' + (/CPU.*OS ([0-9_]{1,5})|(CPU like).*AppleWebKit.*Mobile/i.exec(
             navigator.userAgent) || [0, ''])[1])
         .replace('undefined', '3_2').replace('_', '.').replace('_', '')
-    ) || 'The user-agent didn\'t detect an iOS device';
+    ) || 'Didn\'t detect an iOS device.';
 
     // Display iOS version if any
     document.getElementsByTagName('div')[3].innerHTML = iOS;

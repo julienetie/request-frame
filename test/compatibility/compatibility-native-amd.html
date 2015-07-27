@@ -13,7 +13,8 @@
         margin: 0;
         padding: 0;
     }
-    div{
+    
+    div {
         font-style: sans-serif;
         font-size: 0.9em;
         color: #F5C9E2;
@@ -35,8 +36,10 @@
     <div></div>
     <!-- Display iOS version if any -->
     <div style='color: #BDF72A'></div>
-    <script  data-main="amd/native" src="../../node_modules/requirejs/require.js"></script>
+    <script data-main="amd/native" src="../../node_modules/requirejs/require.js"></script>
     <script>
+    alert(window.requestFrame);
+
     // Grab the div HTML collection.
     var div = document.getElementsByTagName('div');
 
@@ -68,7 +71,6 @@
 
     // Display iOS version if any
     div[3].innerHTML = iOS;
-
     </script>
 </body>
 
