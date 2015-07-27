@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta>
+    <title>request-frame test</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+
+<body>
+    <div id="mocha"></div>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script>
+    mocha.setup("bdd");
+    </script>
+    <script src="../dist/request-frame.js"></script>
+    <script src="test.js"></script>
+    <script>
+    window.onload = function() {
+        mocha.run();
+    };
+    </script>
+</body>
+
+</html>
