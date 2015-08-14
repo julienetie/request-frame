@@ -1,7 +1,7 @@
 /**
  *  request-frame - requestAnimationFrame & cancelAnimationFrame polyfill for
  *   optimal cross-browser development.
- *    Version:  v1.0.1
+ *    Version:  v1.0.2
  *     License:  MIT
  *      Copyright Julien Etienne 2015 All Rights Reserved.
  *        github:  https://github.com/julienetie/request-frame
@@ -93,8 +93,8 @@ function requestFrame(type) {
      * Native clearTimeout function.
      * @return {Function}
      */
-    function clearTimeoutWithId() {
-        return clearTimeout;
+    function clearTimeoutWithId(id) {
+        clearTimeout(id);
     }
 
     /**

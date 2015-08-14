@@ -82,8 +82,8 @@ function requestFrame(type) {
      * Native clearTimeout function.
      * @return {Function}
      */
-    function clearTimeoutWithId() {
-        return clearTimeout;
+    function clearTimeoutWithId(id) {
+        clearTimeout(id);
     }
 
     /**

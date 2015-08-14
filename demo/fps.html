@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FPS demo</title>
+</head>
+
+<body>
+    <div id='water'></div>
+    <script src="../dist/request-frame.min.js"></script>
+    <script>
+    var request = requestFrame('request');
+    // Just add water
+    var div = document.getElementById('water'); // Demo 
+
+
+
+
+
+    /**
+     * setFPS sets the frame rate of the rAF function
+     * with minimum overhead.
+     * @Copyright Julien Etienne 2015
+     * @License MIT
+     */
+    function setFPS(callback, rAF, fps) {
+        // indexOf polyfill from MDN
+        if (!Array.prototype.indexOf) {
+            Array.prototype.indexOf = function(searchElement, fromIndex) {
+                var k;
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+
+                var O = Object(this);
+                var len = O.length >>> 0;
+                if (len === 0) {
+                    return -1;
+                }
+                var n = +fromIndex || 0;
+
+                if (Math.abs(n) === Infinity) {
+                    n = 0;
+                }
+                if (n >= len) {
+                    return -1;
+                }
+                k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+                while (k < len) {
+                    if (k in O && O[k] === searchElement) {
+                        return k;
+                    }
+                    k++;
+                }
+                return -1;
+            };
+        }
+
+        function isAnimationFrameFunction(func) {
+            if (!func) {
+                return;
+            }
+            var reference = func.toString();
+            reference = reference.indexOf('AnimationFrame') > -1;
+            return reference;
+        }
+
+        if (isAnimationFrameFunction(rAF)) {
+            this.fPSTimeStamp = 0;
+        } else {
+            this.fPSTimeStamp = new Date().getTime();
+        }
+        (function loopCallback(time) {
+            if (time > fPSTimeStamp) {
+                fPSTimeStamp += 1000 / fps;
+                callback();
+            }
+            rAF(loopCallback);
+        }());
+    }
+
+    // Demo
+    function showFPSTime() {
+        div.innerHTML = this.fPSTimeStamp;
+    }
+
+    // Demo
+    setFPS(showFPSTime, request, 1);
+    </script>
+</body>
+
+</html>
