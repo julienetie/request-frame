@@ -2,7 +2,7 @@
   "name": "request-frame",
   "version": "1.0.2",
   "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
-  "main": "request-frame.js",
+  "main": "dist/request-frame.js",
   "directories": {
     "example": "example",
     "test": "test"
