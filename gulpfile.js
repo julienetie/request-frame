@@ -1,9 +1,10 @@
-var gulp = require('gulp'),
+var version = '1.0.3',
+    gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     header = require('gulp-header'),
     pkg = require('./package.json'),
-
+    bump = require('gulp-bump'),
     banner = ['/**',
         ' *  <%= pkg.name %> - requestAnimationFrame & cancelAnimationFrame polyfill for',
         ' *   optimal cross-browser development.',
@@ -50,4 +51,13 @@ gulp.task('make', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('default', ['make-min', 'make']);
+gulp.task('bump', function(){
+  gulp.src(['./bower.json','./package.json'])
+  .pipe(bump({version: version}))
+  .pipe(gulp.dest('./'));
+});
+
+
+
+
+gulp.task('default', ['make-min', 'make', 'bump']);

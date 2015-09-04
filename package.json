@@ -1,6 +1,6 @@
 {
   "name": "request-frame",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
   "main": "dist/request-frame.js",
   "directories": {
@@ -39,6 +39,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
+    "gulp-bump": "^0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-header": "^1.2.2",
     "gulp-rename": "^1.2.2",

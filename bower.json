@@ -1,13 +1,13 @@
 {
   "name": "request-frame",
-  "version": "0.8.1",
- "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
+  "version": "1.0.3",
+  "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
   "main": "dist/request-frame.js",
   "moduleType": [
     "amd",
     "globals"
   ],
- "keywords": [
+  "keywords": [
     "requestAnimationFrame",
     "webkitRequestAnimationFrame",
     "mozRequestAnimationFrame",
@@ -23,7 +23,7 @@
     "animation timing",
     "animation timestamp"
   ],
-   "author": "Julien Etienne",
+  "author": "Julien Etienne",
   "license": "MIT",
   "ignore": [
     "node_modules",
