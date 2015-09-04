@@ -33,7 +33,7 @@ var cancel = requestFrame('cancel'); // window.cancelAnimationFrame | cancelTime
 ```
 #### Or re/ assign native functions:
 ```
-request('native'); // re/ declares requestAnimationFrame & cancelAnimationFrame
+requestFrame('native'); // re/ declares requestAnimationFrame & cancelAnimationFrame
 ```
 Below is just an example of the requestAnimationFrame API, see links: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/hh453388.aspx) & [W3](http://www.w3.org/TR/2011/WD-html5-20110525/timers.html). 
 
