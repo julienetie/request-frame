@@ -17,4 +17,4 @@ window.requestFrame = requestFrame;
 }
 /* global -module, -exports, -define */
 
-}(window));
+}((typeof window === "undefined" ? {} : window)));
