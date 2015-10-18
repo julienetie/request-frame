@@ -1,4 +1,4 @@
-var version = '1.4.0',
+var version = '1.4.1',
     gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),

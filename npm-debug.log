@@ -1,0 +1,116 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.1.16
+3 info using node@v0.10.25
+4 verbose node symlink /usr/bin/node
+5 verbose publish [ '.' ]
+6 silly cache add args [ '.', null ]
+7 verbose cache add spec .
+8 silly cache add parsed spec { raw: '.',
+8 silly cache add   scope: null,
+8 silly cache add   name: null,
+8 silly cache add   rawSpec: '.',
+8 silly cache add   spec: '/server/request-frame',
+8 silly cache add   type: 'directory' }
+9 verbose tar pack [ '/home/julius/.npm/request-frame/1.4.0/package.tgz',
+9 verbose tar pack   '/server/request-frame' ]
+10 verbose tarball /home/julius/.npm/request-frame/1.4.0/package.tgz
+11 verbose folder /server/request-frame
+12 info prepublish request-frame@1.4.0
+13 verbose addLocalTarball adding from inside cache /home/julius/.npm/request-frame/1.4.0/package.tgz
+14 silly cache afterAdd request-frame@1.4.0
+15 verbose afterAdd /home/julius/.npm/request-frame/1.4.0/package/package.json not in flight; writing
+16 verbose afterAdd /home/julius/.npm/request-frame/1.4.0/package/package.json written
+17 silly publish { name: 'request-frame',
+17 silly publish   version: '1.4.0',
+17 silly publish   description: 'requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.',
+17 silly publish   main: 'dist/request-frame.js',
+17 silly publish   directories: { example: 'example', test: 'test' },
+17 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+17 silly publish   repository:
+17 silly publish    { type: 'git',
+17 silly publish      url: 'https://github.com/julienetie/request-frame' },
+17 silly publish   keywords:
+17 silly publish    [ 'requestAnimationFrame',
+17 silly publish      'webkitRequestAnimationFrame',
+17 silly publish      'mozRequestAnimationFrame',
+17 silly publish      'cancelAnimationFrame',
+17 silly publish      'mozCancelAnimationFrame',
+17 silly publish      'webkitCancelAnimationFrame',
+17 silly publish      'webkitCancelRequestAnimationFrame',
+17 silly publish      'setTimeout',
+17 silly publish      'cancelTimeout',
+17 silly publish      'timing functions',
+17 silly publish      'requestAnimationFrame polyfill',
+17 silly publish      'polyfill',
+17 silly publish      'animation timing',
+17 silly publish      'animation timestamp' ],
+17 silly publish   author: { name: 'Julien Etienne' },
+17 silly publish   license: 'MIT',
+17 silly publish   bugs: { url: 'https://github.com/julienetie/request-frame/issues' },
+17 silly publish   homepage: 'https://github.com/julienetie/request-frame',
+17 silly publish   devDependencies:
+17 silly publish    { chai: '^3.2.0',
+17 silly publish      gulp: '^3.9.0',
+17 silly publish      'gulp-bump': '^0.3.1',
+17 silly publish      'gulp-concat': '^2.6.0',
+17 silly publish      'gulp-header': '^1.2.2',
+17 silly publish      'gulp-rename': '^1.2.2',
+17 silly publish      'gulp-uglify': '^1.2.0',
+17 silly publish      mocha: '^2.2.5',
+17 silly publish      requirejs: '^2.1.19' },
+17 silly publish   readme: '![img](http://i62.tinypic.com/2ui8xmp.jpg)\n\n### requestAnimationFrame & cancelAnimationFrame for optimal cross-browser development.\n\n## request-frame v1.4.0\n- Provides a clean polyfill for requestAnimationFrame & cancelAnimationFrame.\n- Tested & working on: IE 5.5+, FF 3+, Opera 11.16+, Safari 4+, Chrome 14+, iOS 3+, Android 2.3+, Android Chrome 28+.  \n- **iOS 6 bug fix** without user-agent sniffing.\n- **Firefox 4 - 10 function mismatch normalization**.\n- Doesn\'t modify native functions unless specified.\n- AMD compliant.\n\n### Get request-frame:\n\n#### via npm\n```\nnpm i request-frame --save\n```\n#### via bower\n```\nbower i request-frame\n```\n#### [src](https://github.com/julienetie/request-frame/tree/master/dist)\n```\n<script src="request-frame.min.js"></script>\n```\n### The API:\n#### Assign the timing functions:\n*requestFrame( request | cancel | native )*  request is default. \n```\nvar request = requestFrame(\'request\'); // window.requestAnimationFrame | setTimeout\nvar cancel = requestFrame(\'cancel\'); // window.cancelAnimationFrame | cancelTimeout\n```\n#### Or re/ assign native functions:\n```\nrequestFrame(\'native\'); // re/ declares requestAnimationFrame & cancelAnimationFrame\n```\nBelow is just an example of the requestAnimationFrame API, see links: [MDN](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), [MSDN](https://msdn.microsoft.com/en-us/library/windows/apps/hh453388.aspx) & [W3](http://www.w3.org/TR/2011/WD-html5-20110525/timers.html). \n\n#### Loop something:\n```\nfunction something( useTimeStamp ){\n    \n    // Do something here\n    \n    request(something); \n}\n\nvar requestId = request(something); // Assigns Id & calls "something"\n```\n#### Cancel something:\n```\ncancel(requestId);  // Cancels frame request \n```\n\n### The ideology\nrequest-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances.\n\n### Browsers tested & passing:\n\n![img](http://i61.tinypic.com/i1xuzd.jpg)\n![img](http://i57.tinypic.com/j7fg2x.jpg)\n\n### Issues\nPlease report all bugs [here](http://github.com/julienetie/request-frame/issues). \n\n### Contribute\nJust do it!\n\n### Credits & Thanks\n\nCreated by [Julien Etienne](https://gist.github.com/julienetie), timestamp polyfill by [ Erik Möller, Paul Irish](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) & [Darius Bacon](https://github.com/darius/requestAnimationFrame). Credit to all on this [thread](https://gist.github.com/paulirish/1579671) for sharing great ideas and workarounds.\n\n--- \n\n[MIT License](https://github.com/julienetie/resizilla/blob/master/LICENSE) \n\nCopyright (c) 2015 Julien Etienne \n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: '3ccf217363fe4a77ea8b42f09febd7f55887e4db',
+17 silly publish   _id: 'request-frame@1.4.0',
+17 silly publish   _shasum: '96670326a594ab8eb1b94348eb1411b6f2b26f83',
+17 silly publish   _from: '.' }
+18 silly mapToRegistry name request-frame
+19 silly mapToRegistry using default registry
+20 silly mapToRegistry registry http://registry.npmjs.org/
+21 silly mapToRegistry uri http://registry.npmjs.org/request-frame
+22 verbose publish registryBase http://registry.npmjs.org/
+23 silly publish uploading /home/julius/.npm/request-frame/1.4.0/package.tgz
+24 verbose request uri http://registry.npmjs.org/request-frame
+25 verbose request sending authorization for write operation
+26 info attempt registry request try #1 at 21:56:04
+27 verbose request using bearer token for auth
+28 verbose request id de073c88374637c4
+29 http request PUT http://registry.npmjs.org/request-frame
+30 http 403 http://registry.npmjs.org/request-frame
+31 verbose headers { 'content-type': 'application/json',
+31 verbose headers   'cache-control': 'max-age=60',
+31 verbose headers   'content-length': '95',
+31 verbose headers   'accept-ranges': 'bytes',
+31 verbose headers   date: 'Sun, 18 Oct 2015 20:56:15 GMT',
+31 verbose headers   via: '1.1 varnish',
+31 verbose headers   'x-served-by': 'cache-lhr6328-LHR',
+31 verbose headers   'x-cache': 'MISS',
+31 verbose headers   'x-cache-hits': '0',
+31 verbose headers   'x-timer': 'S1445201767.546587,VS0,VE8297',
+31 verbose headers   connection: 'keep-alive' }
+32 verbose request invalidating /home/julius/.npm/registry.npmjs.org/request-frame on PUT
+33 error publish Failed PUT 403
+34 verbose stack Error: "You cannot publish over the previously published version 1.4.0." : request-frame
+34 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:244:14)
+34 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+34 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:373:22)
+34 verbose stack     at Request.EventEmitter.emit (events.js:98:17)
+34 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1318:14)
+34 verbose stack     at Request.EventEmitter.emit (events.js:117:20)
+34 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1266:12)
+34 verbose stack     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+34 verbose stack     at _stream_readable.js:920:16
+34 verbose stack     at process._tickCallback (node.js:415:13)
+35 verbose statusCode 403
+36 verbose pkgid request-frame
+37 verbose cwd /server/request-frame
+38 error Linux 3.13.0-48-generic
+39 error argv "node" "/usr/local/bin/npm" "publish"
+40 error node v0.10.25
+41 error npm  v2.1.16
+42 error code E403
+43 error "You cannot publish over the previously published version 1.4.0." : request-frame
+44 error If you need help, you may report this error at:
+44 error     <http://github.com/npm/npm/issues>
+45 verbose exit [ 1, true ]
