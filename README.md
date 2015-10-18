@@ -2,7 +2,7 @@
 
 ### requestAnimationFrame & cancelAnimationFrame for optimal cross-browser development.
 
-## request-frame v1.0.3
+## request-frame v1.4.0
 - Provides a clean polyfill for requestAnimationFrame & cancelAnimationFrame.
 - Tested & working on: IE 5.5+, FF 3+, Opera 11.16+, Safari 4+, Chrome 14+, iOS 3+, Android 2.3+, Android Chrome 28+.  
 - **iOS 6 bug fix** without user-agent sniffing.

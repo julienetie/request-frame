@@ -1,7 +1,7 @@
 /**
  *  request-frame - requestAnimationFrame & cancelAnimationFrame polyfill for
  *   optimal cross-browser development.
- *    Version:  v1.2.3
+ *    Version:  v1.0.3
  *     License:  MIT
  *      Copyright Julien Etienne 2015 All Rights Reserved.
  *        github:  https://github.com/julienetie/request-frame
@@ -252,4 +252,4 @@ window.requestFrame = requestFrame;
 }
 /* global -module, -exports, -define */
 
-}(window));
+}((typeof window === "undefined" ? {} : window)));
