@@ -39,14 +39,16 @@ Below is just an example of the requestAnimationFrame API, see links: [MDN](http
 
 #### Loop something:
 ```
+var requestId;
+
 function something( useTimeStamp ){
     
     // Do something here
     
-    request(something); 
+    requestId = request(something); 
 }
 
-var requestId = request(something); // Assigns Id & calls "something"
+requestId = request(something); // Assigns Id & calls "something"
 ```
 #### Cancel something:
 ```
