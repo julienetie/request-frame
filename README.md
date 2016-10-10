@@ -2,6 +2,7 @@
 
 ### A very comprehensive requestAnimationFrame & cancelAnimationFrame polyfill.
 
+- Supports ES6 - AMD - CJS & IIFE 
 - Provides a clean polyfill for requestAnimationFrame & cancelAnimationFrame.
 - Tested & working on: IE 5.5+, FF 3+, Opera 11.16+, Safari 4+, Chrome 14+, iOS 3+, Android 2.3+, Android Chrome 28+.  
 - **iOS 6 bug fix** without user-agent sniffing.
@@ -15,7 +16,15 @@
 
 <sub>
 ```javascript
-<script src="request-frame.min.js"></script>
+import requestFrame from 'request-frame';  // ES6
+```
+
+```javascript
+<script src="request-frame.js"></script> // AMD, IIFE
+```
+
+```javascript
+const requestFrame = require('request-frame');  // CJS
 ```
 </sub>
 
@@ -51,15 +60,16 @@ cancel(requestId);  // Cancels frame request
 ```
 
 ### The ideology
-request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since **multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances**.
+<sub>request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since **multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances**.</sub>
 
 ### Browsers tested & passing:
 
 Supports everything from IE5+
 
-[<img src="http://i61.tinypic.com/i1xuzd.jpg" width="400">](http://i61.tinypic.com/i1xuzd.jpg)
-
-[<img src="http://i57.tinypic.com/j7fg2x.jpg" width="400">](http://i57.tinypic.com/j7fg2x.jpg)
+<sub>
+    <img style="float: left; display: inline-block;" src="http://i61.tinypic.com/i1xuzd.jpg" width="380">
+    <img style="float: left; display: inline-block;"  src="http://i57.tinypic.com/j7fg2x.jpg" width="380">
+</sub>
 
 ### Contribute
 Just do it!
@@ -84,4 +94,4 @@ Created by [Julien Etienne](https://gist.github.com/julienetie), timestamp by [ 
 
 [MIT License](https://github.com/julienetie/resizilla/blob/master/LICENSE) 
 
-Copyright (c) 2016 Julien Etienne 
+&#169; 2016 Julien Etienne 
