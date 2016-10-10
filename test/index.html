@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta>
+    <title>request-frame test</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <style>
+        h5{
+            margin: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+<h5>Chai supports: IE 9+, Chrome 7+, FireFox 4+ &#39; Safari 5+ only. For others use: <a href="compatibility/compatibility-assignation.html">compatibility-assignation.html</a> <a href="compatibility/compatibility-native.html">compatibility-native.html</a>
+</h5>
+    <div id="mocha"></div>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script>
+    mocha.setup("bdd");
+    </script>
+    <script src="../dist/request-frame.js"></script>
+    <script src="test.js"></script>
+    <script>
+    window.onload = function() {
+        mocha.run();
+    };
+    </script>
+</body>
+
+</html>

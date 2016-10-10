@@ -1,8 +1,5 @@
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.requestFrame = factory());
-}(this, (function () { 'use strict';
+(function (exports) {
+'use strict';
 
 /**
  * @param  {String} type - request | cancel | native.
@@ -223,6 +220,6 @@ function requestFrame(type) {
     return func;
 }
 
-return requestFrame;
+exports.requestFrame = requestFrame;
 
-})));
+}(window));

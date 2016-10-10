@@ -1,42 +1,34 @@
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.requestFrame = factory());
-}(this, (function () { 'use strict';
-
 /**
  * @param  {String} type - request | cancel | native.
  * @return {Function} Timing function.
  */
 
-function requestFrame(type) {
+export default function requestFrame(type) {
     // The only vendor prefixes required.
-    var vendors = ['moz', 'webkit'],
-
+    const vendors = ['moz', 'webkit'];
 
     // Disassembled timing function abbreviations.
-    aF = 'AnimationFrame',
-        rqAF = 'Request' + aF,
+    const aF = 'AnimationFrame';
+    const rqAF = 'Request' + aF;
 
-
-    // Final assigned functions.
-    assignedRequestAnimationFrame,
+        // Final assigned functions.
+        assignedRequestAnimationFrame,
         assignedCancelAnimationFrame,
 
+        // Initial time of the timing lapse.
+        previousTime = 0,
 
-    // Initial time of the timing lapse.
-    previousTime = 0,
         mozRAF = window.mozRequestAnimationFrame,
         mozCAF = window.mozCancelAnimationFrame,
 
+        // Checks for firefox 4 - 10 function pair mismatch.
+        hasMozMismatch = mozRAF && !mozCAF,
 
-    // Checks for firefox 4 - 10 function pair mismatch.
-    hasMozMismatch = mozRAF && !mozCAF,
         func;
 
     // Date.now polyfill, mainly for legacy IE versions.
     if (!Date.now) {
-        Date.now = function () {
+        Date.now = function() {
             return new Date().getTime();
         };
     }
@@ -52,19 +44,20 @@ function requestFrame(type) {
         var webkitRAF = window.webkitRequestAnimationFrame,
             rAF = window.requestAnimationFrame,
 
+            // CSS/ Device with max for iOS6 Devices.
+            hasMobileDeviceWidth = screen.width <= 768 ? true : false,
 
-        // CSS/ Device with max for iOS6 Devices.
-        hasMobileDeviceWidth = screen.width <= 768 ? true : false,
+            // Only supports webkit prefixed requestAnimtionFrane.
+            requiresWebkitprefix = !(webkitRAF && rAF),
 
+            // iOS6 webkit browsers don't support performance now.
+            hasNoNavigationTiming = window.performance ? false : true,
 
-        // Only supports webkit prefixed requestAnimtionFrane.
-        requiresWebkitprefix = !(webkitRAF && rAF),
+            iOS6Notice = 'setTimeout is being used as a substitiue for' +
+            'requestAnimationFrame due to a bug within iOS 6 builds',
 
-
-        // iOS6 webkit browsers don't support performance now.
-        hasNoNavigationTiming = window.performance ? false : true,
-            iOS6Notice = 'setTimeout is being used as a substitiue for' + 'requestAnimationFrame due to a bug within iOS 6 builds',
-            hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth && hasNoNavigationTiming;
+            hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth &&
+            hasNoNavigationTiming;
 
         function bugCheckresults(timingFnA, timingFnB, notice) {
             if (timingFnA || timingFnB) {
@@ -107,9 +100,10 @@ function requestFrame(type) {
     function setTimeoutWithTimestamp(callback) {
         var immediateTime = Date.now(),
             lapsedTime = Math.max(previousTime + 16, immediateTime);
-        return setTimeout(function () {
-            callback(previousTime = lapsedTime);
-        }, lapsedTime - immediateTime);
+        return setTimeout(function() {
+                callback(previousTime = lapsedTime);
+            },
+            lapsedTime - immediateTime);
     }
 
     /**
@@ -119,9 +113,11 @@ function requestFrame(type) {
      */
     function queryRequestAnimationFrame() {
         if (Array.prototype.filter) {
-            assignedRequestAnimationFrame = window['request' + aF] || window[vendors.filter(function (vendor) {
-                if (window[vendor + rqAF] !== undefined) return vendor;
-            }) + rqAF] || setTimeoutWithTimestamp;
+            assignedRequestAnimationFrame = window['request' + aF] ||
+                window[vendors.filter(function(vendor) {
+                    if (window[vendor + rqAF] !== undefined)
+                        return vendor;
+                }) + rqAF] || setTimeoutWithTimestamp;
         } else {
             return setTimeoutWithTimestamp;
         }
@@ -140,10 +136,12 @@ function requestFrame(type) {
     function queryCancelAnimationFrame() {
         var cancellationNames = [];
         if (Array.prototype.map) {
-            vendors.map(function (vendor) {
-                return ['Cancel', 'CancelRequest'].map(function (cancellationNamePrefix) {
-                    cancellationNames.push(vendor + cancellationNamePrefix + aF);
-                });
+            vendors.map(function(vendor) {
+                return ['Cancel', 'CancelRequest'].map(
+                    function(cancellationNamePrefix) {
+                        cancellationNames.push(vendor +
+                            cancellationNamePrefix + aF);
+                    });
             });
         } else {
             return clearTimeoutWithId;
@@ -167,7 +165,9 @@ function requestFrame(type) {
         }
 
         // Use truthly function
-        assignedCancelAnimationFrame = window['cancel' + aF] || prefixedCancelAnimationFrame(cancellationNames, 0) || clearTimeoutWithId;
+        assignedCancelAnimationFrame = window['cancel' + aF] ||
+            prefixedCancelAnimationFrame(cancellationNames, 0) ||
+            clearTimeoutWithId;
 
         // Check for iOS 6 bug
         if (!hasIOS6RequestAnimationFrameBug()) {
@@ -222,7 +222,3 @@ function requestFrame(type) {
     }
     return func;
 }
-
-return requestFrame;
-
-})));
