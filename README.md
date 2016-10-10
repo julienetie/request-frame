@@ -12,9 +12,9 @@
 
 #### Install options
 
-<sub>`npm i request-frame --save` **&nbsp;&nbsp;|&nbsp;&nbsp;** `bower i request-frame` **&nbsp;&nbsp;|&nbsp;&nbsp;** [src](https://github.com/julienetie/request-frame/tree/master/dist) **&nbsp;&nbsp;|&nbsp;&nbsp;** [release](https://github.com/julienetie/request-frame/releases)</sub>
+`npm i request-frame --save` **&nbsp;&nbsp;|&nbsp;&nbsp;** `bower i request-frame` **&nbsp;&nbsp;|&nbsp;&nbsp;** [src](https://github.com/julienetie/request-frame/tree/master/dist) **&nbsp;&nbsp;|&nbsp;&nbsp;** [release](https://github.com/julienetie/request-frame/releases)
 
-<sub>
+
 ```javascript
 import requestFrame from 'request-frame';  // ES6
 ```
@@ -26,7 +26,7 @@ import requestFrame from 'request-frame';  // ES6
 ```javascript
 const requestFrame = require('request-frame');  // CJS
 ```
-</sub>
+
 
 ### The API:
 #### Assign the timing functions:
@@ -54,22 +54,22 @@ function something( useTimeStamp ){
 
 requestId = request(something); // Assigns Id & calls "something"
 ```
+
 #### Cancel something:
+
 ```javascript
 cancel(requestId);  // Cancels frame request 
 ```
 
 ### The ideology
-<sub>request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since **multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances**.</sub>
+request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances.
 
 ### Browsers tested & passing:
 
 Supports everything from IE5+
 
-<sub>
     <img style="float: left; display: inline-block;" src="http://i61.tinypic.com/i1xuzd.jpg" width="380">
     <img style="float: left; display: inline-block;"  src="http://i57.tinypic.com/j7fg2x.jpg" width="380">
-</sub>
 
 ### Contribute
 Just do it!
@@ -84,7 +84,7 @@ To launch port 9999
 - ./test/compatibility-native-amd.html 
 - ./test/compatibility-native.html 
 
-<sub>_Browser based testing for RAF is imperative_ </sub>
+_Browser based testing for RAF is imperative_
 
 ### Credits
 
