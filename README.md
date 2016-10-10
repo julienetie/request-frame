@@ -54,10 +54,12 @@ cancel(requestId);  // Cancels frame request
 request-frame aims to provide an optimal development consistency with the use of animation timing functions across the large number of browsers and devices. This lib is ideal for those who may want to avoid re-assigning native functions, or avoid interfering with other libs that do. requestFrame() is purposely not a constructor. The intention is for requestAnimationFrame to be used once or few times during execution since **multiple task are expected to be more efficient via a single requestAnimationFrame loop compared to several instances**.
 
 ### Browsers tested & passing:
-Supports everything from IE5+
-[<img src="http://i61.tinypic.com/i1xuzd.jpg" width="400">](http://i61.tinypic.com/i1xuzd.jpg)
-[<img src="http://i57.tinypic.com/j7fg2x.jpg" width="400">](http://i57.tinypic.com/j7fg2x.jpg)
 
+Supports everything from IE5+
+
+[<img src="http://i61.tinypic.com/i1xuzd.jpg" width="400">](http://i61.tinypic.com/i1xuzd.jpg)
+
+[<img src="http://i57.tinypic.com/j7fg2x.jpg" width="400">](http://i57.tinypic.com/j7fg2x.jpg)
 
 ### Contribute
 Just do it!
@@ -74,7 +76,7 @@ To launch port 9999
 
 <sub>_Browser based testing for RAF is imperative_ </sub>
 
-### Credits & Thanks
+### Credits
 
 Created by [Julien Etienne](https://gist.github.com/julienetie), timestamp by [ Erik Möller, Paul Irish](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) & [Darius Bacon](https://github.com/darius/requestAnimationFrame).
 
