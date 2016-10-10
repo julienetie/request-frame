@@ -2,7 +2,6 @@
  * @param  {String} type - request | cancel | native.
  * @return {Function} Timing function.
  */
-
 export default function requestFrame(type) {
     // The only vendor prefixes required.
     const vendors = ['moz', 'webkit'];

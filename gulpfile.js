@@ -1,7 +1,7 @@
 var version = '1.4.3',
     gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
+    rename = require('gulp-rename'),
     header = require('gulp-header'),
     pkg = require('./package.json'),
     bump = require('gulp-bump'),
@@ -26,38 +26,32 @@ var version = '1.4.3',
         ''
     ].join('\n');
 
-var src = [
-    './src/amd-wrapper-start.js',
-    './src/request-frame.src.js',
-    './src/amd-wrapper-end.js'
-];
+var src = './dist/request-frame.js';
 
-gulp.task('make-min', function() {
-    return gulp.src(src)
-        .pipe(concat('request-frame.min.js'))
-        .pipe(uglify())
+gulp.task('Add header to ES version', function() {
+    return gulp.src('./dist/request-frame.es.js')
         .pipe(header(minBanner, {
             pkg: pkg
         }))
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('make', function() {
-    return gulp.src(src)
-        .pipe(concat('request-frame.js'))
-        .pipe(header(banner, {
+gulp.task('Add header to UMD version', function() {
+    return gulp.src('./dist/request-frame.js')
+        .pipe(header(minBanner, {
             pkg: pkg
         }))
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('bump', function(){
-  gulp.src(['./bower.json','./package.json'])
-  .pipe(bump({version: version}))
-  .pipe(gulp.dest('./'));
-});
+// gulp.task('bump', function(){
+//   gulp.src(['./bower.json','./package.json'])
+//   .pipe(bump({version: version}))
+//   .pipe(gulp.dest('./'));
+// });
 
 
-
-
-gulp.task('default', ['make-min', 'make', 'bump']);
+gulp.task('default', [
+    'Add header to ES version',
+    'Add header to UMD version'
+]);
