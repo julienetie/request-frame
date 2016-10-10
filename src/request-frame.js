@@ -22,6 +22,7 @@ export default function requestFrame(type) {
 
     // Initial time of the timing lapse.
     var previousTime = 0;
+
     var requestFrameMain;
 
     // Date.now polyfill, mainly for legacy IE versions.
@@ -38,7 +39,7 @@ export default function requestFrame(type) {
      * @Copyright 2015 - Julien Etienne. 
      * @License: MIT.
      */
-    function hasIOS6RequestAnimationFrameBug(iOS6Notice) {
+    function hasIOS6RequestAnimationFrameBug() {
         const webkitRAF = window.webkitRequestAnimationFrame;
         const rAF = window.requestAnimationFrame;
 
@@ -111,7 +112,7 @@ export default function requestFrame(type) {
      */
     function queryRequestAnimationFrame() {
         if (Array.prototype.filter) {
-            let assignedRequestAnimationFrame = window['request' + aF] ||
+            assignedRequestAnimationFrame = window['request' + aF] ||
                 window[vendors.filter(function(vendor) {
                     if (window[vendor + rqAF] !== undefined)
                         return vendor;

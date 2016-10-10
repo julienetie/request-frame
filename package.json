@@ -9,7 +9,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/.bin/http-server ./ -p 9999 -o"
+    "dev": "rollup -c",
+    "watch": "rollup -c --watch",
+    "test": "./node_modules/.bin/http-server ./ -p 9999"
   },
   "repository": {
     "type": "git",
@@ -52,6 +54,7 @@
     "mocha": "*",
     "requirejs": "*",
     "rollup": "^0.36.3",
-    "rollup-plugin-babel": "^2.6.1"
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-watch": "^2.5.0"
   }
 }

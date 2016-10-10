@@ -11,28 +11,25 @@
 
 function requestFrame(type) {
     // The only vendor prefixes required.
-    var vendors = ['moz', 'webkit'],
-
+    const vendors = ['moz', 'webkit'];
 
     // Disassembled timing function abbreviations.
-    aF = 'AnimationFrame',
-        rqAF = 'Request' + aF,
-
-
-    // Final assigned functions.
-    assignedRequestAnimationFrame,
-        assignedCancelAnimationFrame,
-
-
-    // Initial time of the timing lapse.
-    previousTime = 0,
-        mozRAF = window.mozRequestAnimationFrame,
-        mozCAF = window.mozCancelAnimationFrame,
-
+    const aF = 'AnimationFrame';
+    const rqAF = 'Request' + aF;
 
     // Checks for firefox 4 - 10 function pair mismatch.
-    hasMozMismatch = mozRAF && !mozCAF,
-        func;
+    const mozRAF = window.mozRequestAnimationFrame;
+    const mozCAF = window.mozCancelAnimationFrame;
+    const hasMozMismatch = mozRAF && !mozCAF;
+
+    // Final assigned functions.
+    var assignedRequestAnimationFrame;
+    var assignedCancelAnimationFrame;
+
+    // Initial time of the timing lapse.
+    var previousTime = 0;
+
+    var requestFrameMain;
 
     // Date.now polyfill, mainly for legacy IE versions.
     if (!Date.now) {
@@ -49,41 +46,41 @@ function requestFrame(type) {
      * @License: MIT.
      */
     function hasIOS6RequestAnimationFrameBug() {
-        var webkitRAF = window.webkitRequestAnimationFrame,
-            rAF = window.requestAnimationFrame,
-
+        const webkitRAF = window.webkitRequestAnimationFrame;
+        const rAF = window.requestAnimationFrame;
 
         // CSS/ Device with max for iOS6 Devices.
-        hasMobileDeviceWidth = screen.width <= 768 ? true : false,
-
+        const hasMobileDeviceWidth = screen.width <= 768 ? true : false;
 
         // Only supports webkit prefixed requestAnimtionFrane.
-        requiresWebkitprefix = !(webkitRAF && rAF),
-
+        const requiresWebkitprefix = !(webkitRAF && rAF);
 
         // iOS6 webkit browsers don't support performance now.
-        hasNoNavigationTiming = window.performance ? false : true,
-            iOS6Notice = 'setTimeout is being used as a substitiue for' + 'requestAnimationFrame due to a bug within iOS 6 builds',
-            hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth && hasNoNavigationTiming;
+        const hasNoNavigationTiming = window.performance ? false : true;
 
-        function bugCheckresults(timingFnA, timingFnB, notice) {
+        const iOS6Notice = `setTimeout is being used as a substitiue for 
+            requestAnimationFrame due to a bug within iOS 6 builds`;
+
+        const hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth && hasNoNavigationTiming;
+
+        const bugCheckresults = (timingFnA, timingFnB, notice) => {
             if (timingFnA || timingFnB) {
                 console.warn(notice);
                 return true;
             } else {
                 return false;
             }
-        }
+        };
 
-        function displayResults() {
-            if (hasIOS6Bug) {
-                return bugCheckresults(webkitRAF, rAF, iOS6Notice);
+        const displayResults = (hasBug, hasBugNotice, webkitFn, nativeFn) => {
+            if (hasBug) {
+                return bugCheckresults(webkitFn, nativeFn, hasBugNotice);
             } else {
                 return false;
             }
-        }
+        };
 
-        return displayResults();
+        return displayResults(hasIOS6Bug, iOS6Notice, webkitRAF, rAF);
     }
 
     /**
@@ -105,8 +102,8 @@ function requestFrame(type) {
      * @return {Function} setTimeout Function.
      */
     function setTimeoutWithTimestamp(callback) {
-        var immediateTime = Date.now(),
-            lapsedTime = Math.max(previousTime + 16, immediateTime);
+        let immediateTime = Date.now();
+        let lapsedTime = Math.max(previousTime + 16, immediateTime);
         return setTimeout(function () {
             callback(previousTime = lapsedTime);
         }, lapsedTime - immediateTime);
@@ -138,7 +135,7 @@ function requestFrame(type) {
      * @return {Function}
      */
     function queryCancelAnimationFrame() {
-        var cancellationNames = [];
+        let cancellationNames = [];
         if (Array.prototype.map) {
             vendors.map(function (vendor) {
                 return ['Cancel', 'CancelRequest'].map(function (cancellationNamePrefix) {
@@ -156,7 +153,7 @@ function requestFrame(type) {
          * @return {Function} prefixed cancelAnimationFrame function.
          */
         function prefixedCancelAnimationFrame(prefixedNames, i) {
-            var cancellationFunction;
+            let cancellationFunction;
             for (; i < prefixedNames.length; i++) {
                 if (window[prefixedNames[i]]) {
                     cancellationFunction = window[prefixedNames[i]];
@@ -207,11 +204,11 @@ function requestFrame(type) {
     switch (type) {
         case 'request':
         case '':
-            func = getRequestFn();
+            requestFrameMain = getRequestFn();
             break;
 
         case 'cancel':
-            func = getCancelFn();
+            requestFrameMain = getCancelFn();
             break;
 
         case 'native':
@@ -220,7 +217,7 @@ function requestFrame(type) {
         default:
             throw new Error('RequestFrame parameter is not a type.');
     }
-    return func;
+    return requestFrameMain;
 }
 
 return requestFrame;
