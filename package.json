@@ -3,12 +3,13 @@
   "version": "1.4.3",
   "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
   "main": "dist/request-frame.js",
+  "jsnext:main": "dist/request-frame.es.js",
   "directories": {
     "example": "example",
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/http-server ./ -p 9999 -o"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "gulp-header": "*",
     "gulp-rename": "*",
     "gulp-uglify": "*",
+    "http-server": "^0.9.0",
     "mocha": "*",
     "requirejs": "*"
   }
