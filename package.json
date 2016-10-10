@@ -1,6 +1,6 @@
 {
   "name": "request-frame",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
   "main": "dist/request-frame.js",
   "jsnext:main": "dist/request-frame.es.js",
@@ -9,7 +9,9 @@
     "test": "test"
   },
   "scripts": {
-    "dev": "rollup -c",
+    "bump": "gulp bump",
+    "header": "gulp",
+    "build": "rollup -c",
     "watch": "rollup -c --watch",
     "test": "./node_modules/.bin/http-server ./ -p 9999"
   },

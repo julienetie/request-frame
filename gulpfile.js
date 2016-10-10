@@ -1,4 +1,4 @@
-var version = '1.4.3',
+var version = '1.5.0',
     gulp = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
@@ -44,11 +44,11 @@ gulp.task('Add header to UMD version', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-// gulp.task('bump', function(){
-//   gulp.src(['./bower.json','./package.json'])
-//   .pipe(bump({version: version}))
-//   .pipe(gulp.dest('./'));
-// });
+gulp.task('bump', function(){
+  gulp.src(['./bower.json','./package.json'])
+  .pipe(bump({version: version}))
+  .pipe(gulp.dest('./'));
+});
 
 
 gulp.task('default', [

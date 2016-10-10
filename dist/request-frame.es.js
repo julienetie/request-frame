@@ -1,8 +1,13 @@
 /**
+ * request-frame - requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.
+ * @version v1.4.3
+ * @license MIT
+ * Copyright Julien Etienne 2015 All Rights Reserved.
+ */
+/**
  * @param  {String} type - request | cancel | native.
  * @return {Function} Timing function.
  */
-
 function requestFrame(type) {
     // The only vendor prefixes required.
     const vendors = ['moz', 'webkit'];

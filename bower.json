@@ -1,6 +1,6 @@
 {
   "name": "request-frame",
-  "version": "1.4.3",
+  "version": "1.5.0",
   "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
   "main": "dist/request-frame.js",
   "moduleType": [
