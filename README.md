@@ -1,6 +1,6 @@
 ![img](http://i62.tinypic.com/2ui8xmp.jpg)
 
-### A very comprehensive requestAnimationFrame & cancelAnimationFrame polyfill.
+### A comprehensive requestAnimationFrame & cancelAnimationFrame polyfill.
 
 - Supports ES6 - AMD - CJS & IIFE 
 - Provides a clean polyfill for requestAnimationFrame & cancelAnimationFrame.
