@@ -1,6 +1,6 @@
 /**
  * request-frame - requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.
- * @version v1.5.0
+ * @version v1.5.1
  * @license MIT
  * Copyright Julien Etienne 2015 All Rights Reserved.
  */

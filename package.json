@@ -1,6 +1,6 @@
 {
   "name": "request-frame",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
   "main": "dist/request-frame.js",
   "jsnext:main": "dist/request-frame.es.js",
@@ -46,6 +46,7 @@
     "babel-preset-es2015": "*",
     "babel-preset-modern-browsers": "*",
     "chai": "*",
+    "gulp": "^3.9.1",
     "gulp-bump": "*",
     "gulp-concat": "*",
     "gulp-es-next": "*",
