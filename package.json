@@ -42,21 +42,20 @@
   },
   "homepage": "https://github.com/julienetie/request-frame",
   "devDependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-preset-es2015": "^6.16.0",
-    "babel-preset-modern-browsers": "^5.1.0",
+    "babel-cli": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-modern-browsers": "*",
     "chai": "*",
-    "gulp": "*",
     "gulp-bump": "*",
     "gulp-concat": "*",
+    "gulp-es-next": "*",
     "gulp-header": "*",
     "gulp-rename": "*",
-    "gulp-uglify": "*",
-    "http-server": "^0.9.0",
+    "http-server": "*",
     "mocha": "*",
     "requirejs": "*",
-    "rollup": "^0.36.3",
-    "rollup-plugin-babel": "^2.6.1",
-    "rollup-watch": "^2.5.0"
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-watch": "*"
   }
 }
