@@ -35,7 +35,7 @@ export default function requestFrame(type) {
      * hasIOS6RequestAnimationFrameBug.
      * @See {@Link https://gist.github.com/julienetie/86ac394ec41f1271ff0a}
      * - for Commentary.
-     * @Copyright 2015 - Julien Etienne. 
+     * @Copyright 2015 - Julien Etienne.
      * @License: MIT.
      */
     function hasIOS6RequestAnimationFrameBug() {
@@ -51,8 +51,8 @@ export default function requestFrame(type) {
             // iOS6 webkit browsers don't support performance now.
         const hasNoNavigationTiming = window.performance ? false : true;
 
-        const iOS6Notice = `setTimeout is being used as a substitiue for 
-            requestAnimationFrame due to a bug within iOS 6 builds`;
+        const iOS6Notice = 'setTimeout is being used as a substitiue for' +
+            'requestAnimationFrame due to a bug within iOS 6 builds';
 
         const hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth &&
             hasNoNavigationTiming;
@@ -86,7 +86,7 @@ export default function requestFrame(type) {
     }
 
     /**
-     * Based on a polyfill by Erik, introduced by Paul Irish & 
+     * Based on a polyfill by Erik, introduced by Paul Irish &
      * further improved by Darius Bacon.
      * @see  {@link http://www.paulirish.com/2011/
      * requestanimationframe-for-smart-animating}
@@ -105,7 +105,7 @@ export default function requestFrame(type) {
     }
 
     /**
-     * Queries the native function, prefixed function 
+     * Queries the native function, prefixed function
      * or use the setTimeoutWithTimestamp function.
      * @return {Function}
      */
@@ -127,7 +127,7 @@ export default function requestFrame(type) {
     }
 
     /**
-     * Queries the native function, prefixed function 
+     * Queries the native function, prefixed function
      * or use the clearTimeoutWithId function.
      * @return {Function}
      */
@@ -147,7 +147,7 @@ export default function requestFrame(type) {
 
         /**
          * Checks for the prefixed cancelAnimationFrame implementation.
-         * @param  {Array} prefixedNames - An array of the prefixed names. 
+         * @param  {Array} prefixedNames - An array of the prefixed names.
          * @param  {Number} i - Iteration start point.
          * @return {Function} prefixed cancelAnimationFrame function.
          */
@@ -198,7 +198,7 @@ export default function requestFrame(type) {
     }
 
     /**
-     * The type value "request" singles out firefox 4 - 10 and 
+     * The type value "request" singles out firefox 4 - 10 and
      * assigns the setTimeout function if plausible.
      */
 
