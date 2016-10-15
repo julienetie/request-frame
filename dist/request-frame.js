@@ -1,3 +1,9 @@
+/**
+ * request-frame - requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.
+ * @version v1.5.1
+ * @license MIT
+ * Copyright Julien Etienne 2015 All Rights Reserved.
+ */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
