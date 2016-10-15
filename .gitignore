@@ -2,3 +2,4 @@ node_modules
 project
 npm-debug.log
 dummy.js
+yarn.lock

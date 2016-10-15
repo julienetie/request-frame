@@ -1,9 +1,3 @@
-/**
- * request-frame - requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.
- * @version v1.5.1
- * @license MIT
- * Copyright Julien Etienne 2015 All Rights Reserved.
- */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
@@ -16,16 +10,16 @@
  */
 function requestFrame(type) {
     // The only vendor prefixes required.
-    const vendors = ['moz', 'webkit'];
+    var vendors = ['moz', 'webkit'];
 
     // Disassembled timing function abbreviations.
-    const aF = 'AnimationFrame';
-    const rqAF = 'Request' + aF;
+    var aF = 'AnimationFrame';
+    var rqAF = 'Request' + aF;
 
     // Checks for firefox 4 - 10 function pair mismatch.
-    const mozRAF = window.mozRequestAnimationFrame;
-    const mozCAF = window.mozCancelAnimationFrame;
-    const hasMozMismatch = mozRAF && !mozCAF;
+    var mozRAF = window.mozRequestAnimationFrame;
+    var mozCAF = window.mozCancelAnimationFrame;
+    var hasMozMismatch = mozRAF && !mozCAF;
 
     // Final assigned functions.
     var assignedRequestAnimationFrame;
@@ -51,24 +45,23 @@ function requestFrame(type) {
      * @License: MIT.
      */
     function hasIOS6RequestAnimationFrameBug() {
-        const webkitRAF = window.webkitRequestAnimationFrame;
-        const rAF = window.requestAnimationFrame;
+        var webkitRAF = window.webkitRequestAnimationFrame;
+        var rAF = window.requestAnimationFrame;
 
         // CSS/ Device with max for iOS6 Devices.
-        const hasMobileDeviceWidth = screen.width <= 768 ? true : false;
+        var hasMobileDeviceWidth = screen.width <= 768 ? true : false;
 
         // Only supports webkit prefixed requestAnimtionFrane.
-        const requiresWebkitprefix = !(webkitRAF && rAF);
+        var requiresWebkitprefix = !(webkitRAF && rAF);
 
         // iOS6 webkit browsers don't support performance now.
-        const hasNoNavigationTiming = window.performance ? false : true;
+        var hasNoNavigationTiming = window.performance ? false : true;
 
-        const iOS6Notice = `setTimeout is being used as a substitiue for 
-            requestAnimationFrame due to a bug within iOS 6 builds`;
+        var iOS6Notice = 'setTimeout is being used as a substitiue for \n            requestAnimationFrame due to a bug within iOS 6 builds';
 
-        const hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth && hasNoNavigationTiming;
+        var hasIOS6Bug = requiresWebkitprefix && hasMobileDeviceWidth && hasNoNavigationTiming;
 
-        const bugCheckresults = (timingFnA, timingFnB, notice) => {
+        var bugCheckresults = function bugCheckresults(timingFnA, timingFnB, notice) {
             if (timingFnA || timingFnB) {
                 console.warn(notice);
                 return true;
@@ -77,7 +70,7 @@ function requestFrame(type) {
             }
         };
 
-        const displayResults = (hasBug, hasBugNotice, webkitFn, nativeFn) => {
+        var displayResults = function displayResults(hasBug, hasBugNotice, webkitFn, nativeFn) {
             if (hasBug) {
                 return bugCheckresults(webkitFn, nativeFn, hasBugNotice);
             } else {
@@ -107,8 +100,8 @@ function requestFrame(type) {
      * @return {Function} setTimeout Function.
      */
     function setTimeoutWithTimestamp(callback) {
-        let immediateTime = Date.now();
-        let lapsedTime = Math.max(previousTime + 16, immediateTime);
+        var immediateTime = Date.now();
+        var lapsedTime = Math.max(previousTime + 16, immediateTime);
         return setTimeout(function () {
             callback(previousTime = lapsedTime);
         }, lapsedTime - immediateTime);
@@ -140,7 +133,7 @@ function requestFrame(type) {
      * @return {Function}
      */
     function queryCancelAnimationFrame() {
-        let cancellationNames = [];
+        var cancellationNames = [];
         if (Array.prototype.map) {
             vendors.map(function (vendor) {
                 return ['Cancel', 'CancelRequest'].map(function (cancellationNamePrefix) {
@@ -158,7 +151,7 @@ function requestFrame(type) {
          * @return {Function} prefixed cancelAnimationFrame function.
          */
         function prefixedCancelAnimationFrame(prefixedNames, i) {
-            let cancellationFunction;
+            var cancellationFunction = void 0;
             for (; i < prefixedNames.length; i++) {
                 if (window[prefixedNames[i]]) {
                     cancellationFunction = window[prefixedNames[i]];
