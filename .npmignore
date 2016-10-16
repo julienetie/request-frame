@@ -1,0 +1,11 @@
+node_modules
+project
+npm-debug.log
+dummy.js
+yarn.lock
+rollup
+src
+test
+.babelrc
+bower.json
+gulpfile.babel.js
