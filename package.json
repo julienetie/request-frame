@@ -46,6 +46,7 @@
     "babel-cli": "*",
     "babel-preset-es2015": "*",
     "babel-preset-modern-browsers": "*",
+    "babel-preset-es2015-rollup": "^1.2.0",
     "chai": "*",
     "gulp": "^3.9.1",
     "gulp-bump": "*",
@@ -61,7 +62,5 @@
     "rollup-watch": "*"
   },
   "dependencies": {
-    "babel-preset-es2015-rollup": "^1.2.0",
-    "dev": "^0.1.3"
   }
 }
