@@ -1,13 +1,9 @@
 {
   "name": "request-frame",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "requestAnimationFrame & cancelAnimationFrame polyfill for optimal cross-browser development.",
   "main": "dist/request-frame.js",
   "jsnext:main": "dist/request-frame.es.js",
-  "directories": {
-    "example": "example",
-    "test": "test"
-  },
   "scripts": {
     "bump": "gulp bump",
     "header": "gulp",
@@ -45,7 +41,6 @@
   "devDependencies": {
     "babel-cli": "*",
     "babel-preset-es2015": "*",
-    "babel-preset-modern-browsers": "*",
     "babel-preset-es2015-rollup": "^1.2.0",
     "chai": "*",
     "gulp": "^3.9.1",
@@ -60,7 +55,5 @@
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-watch": "*"
-  },
-  "dependencies": {
   }
 }
