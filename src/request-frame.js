@@ -83,6 +83,7 @@ export default function requestFrame(type) {
      */
     function clearTimeoutWithId(id) {
         clearTimeout(id);
+        id = null;
     }
 
     /**
