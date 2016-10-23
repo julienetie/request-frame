@@ -89,12 +89,8 @@ To launch port 9999
 
 _Browser based testing for RAF is imperative_
 
-### Credits
-
-Created by [Julien Etienne](https://gist.github.com/julienetie), timestamp by [ Erik Möller, Paul Irish](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/) & [Darius Bacon](https://github.com/darius/requestAnimationFrame).
-
 --- 
 
-[MIT License](https://github.com/julienetie/resizilla/blob/master/LICENSE) 
+[MIT License](https://github.com/julienetie/request-frame/blob/master/LICENSE) 
 
 &#169; 2016 Julien Etienne 
