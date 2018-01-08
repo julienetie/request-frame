@@ -1,3 +1,5 @@
+ `* *` _If you are not supporting browsers from IE9 and below, you probably don't need this or any equivalent polyfill_ `* *`
+
 ![img](http://i62.tinypic.com/2ui8xmp.jpg)
 
 ### A comprehensive requestAnimationFrame & cancelAnimationFrame polyfill.
