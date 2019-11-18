@@ -1,6 +1,6 @@
  `* *` _If you are not supporting browsers from IE9 and below, you probably don't need this or any equivalent polyfill_ `* *`
 
-![img](http://i62.tinypic.com/2ui8xmp.jpg)
+# request-frame 
 
 ### A comprehensive requestAnimationFrame & cancelAnimationFrame polyfill.
 
@@ -69,11 +69,6 @@ request-frame aims to provide an optimal development consistency with the use of
 ### Browsers tested & passing:
 
 Supports everything from IE5+
-
-[<img style="float: left; display: inline-block;" src="http://i61.tinypic.com/i1xuzd.jpg" width="380">](http://i61.tinypic.com/i1xuzd.jpg)
-
-[<img style="float: left; display: inline-block;"  src="http://i57.tinypic.com/j7fg2x.jpg" width="380">](http://i57.tinypic.com/j7fg2x.jpg)
-
     
 
 ### Contribute
