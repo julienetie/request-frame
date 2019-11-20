@@ -24,56 +24,14 @@
      * @Copyright Julien Etienne 2015
      * @License MIT
      */
-    function setFPS(callback, rAF, fps) {
-        // indexOf polyfill from MDN
-        if (!Array.prototype.indexOf) {
-            Array.prototype.indexOf = function(searchElement, fromIndex) {
-                var k;
-                if (this == null) {
-                    throw new TypeError('"this" is null or not defined');
-                }
-
-                var O = Object(this);
-                var len = O.length >>> 0;
-                if (len === 0) {
-                    return -1;
-                }
-                var n = +fromIndex || 0;
-
-                if (Math.abs(n) === Infinity) {
-                    n = 0;
-                }
-                if (n >= len) {
-                    return -1;
-                }
-                k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
-                while (k < len) {
-                    if (k in O && O[k] === searchElement) {
-                        return k;
-                    }
-                    k++;
-                }
-                return -1;
-            };
-        }
-
-        function isAnimationFrameFunction(func) {
-            if (!func) {
-                return;
-            }
-            var reference = func.toString();
-            reference = reference.indexOf('AnimationFrame') > -1;
-            return reference;
-        }
-
-        if (isAnimationFrameFunction(rAF)) {
-            this.fPSTimeStamp = 0;
-        } else {
-            this.fPSTimeStamp = new Date().getTime();
-        }
+    function setFPS(callback, rAF, fps) {  
+        this.fPSTimeStamp = 0;
+        this.fpsDelay = Math.round(1000 / fps);
+        
         (function loopCallback(time) {
             if (time > fPSTimeStamp) {
-                fPSTimeStamp += 1000 / fps;
+                var t = (time + this.fpsDelay);
+                fPSTimeStamp = Math.round(t/fpsDelay) * fpsDelay;
                 callback();
             }
             rAF(loopCallback);
